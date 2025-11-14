@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@context/*": ["context/*"],
+      "@auth/*": ["components/Auth/*"],
+      "@layouts/*": ["layouts/*"],
+      "@pages/*": ["pages/*"],
+      "@administrador/*": ["components/administrador/*"],      "@professors/*": ["components/profesor/*"],
+      "@calendario/*": ["components/Calendar/*"],
+      "@ui/*": ["components/UI/*"],
+      "@components/*": ["components/*"]
+    }
+  },
+  "include": ["src"]
+}

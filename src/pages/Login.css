@@ -1,0 +1,259 @@
+/* Login.css */
+
+/* Fondo y contenedor principal */
+.login-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #101010, #161616, #0a0a0a);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Main centrado */
+.login-main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  z-index: 10;
+}
+
+/* Card */
+.login-card {
+  max-width: 400px;
+  width: 100%;
+  background: rgba(26, 26, 26, 0.6);
+  border-radius: 20px;
+  border: 1px solid #2c2c2c;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(10, 248, 155, 0.15);
+  backdrop-filter: blur(12px);
+  color: #fbfaf7;
+  transition: transform 0.3s ease;
+}
+
+.login-card:hover {
+  transform: scale(1.01);
+}
+
+/* Título */
+.login-title {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #87ceeb, #0af89b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+.login-subtitle {
+  color: #87ceeb;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+/* Inputs */
+.input-group {
+  margin-bottom: 1.25rem;
+}
+
+.input-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #87ceeb;
+  pointer-events: none;
+  font-size: 1.2rem;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 16px 12px 40px;
+  border-radius: 12px;
+  border: 1px solid #3a3a3a;
+  background-color: #252525;
+  color: #fbfaf7;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-field::placeholder {
+  color: #5a5a5a;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #0af89b;
+  box-shadow: 0 0 6px #0af89b;
+}
+
+/* Error y éxito */
+.message-error, .message-success {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.message-error {
+  background-color: rgba(139, 0, 0, 0.2);
+  color: #ffb3b3;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.message-success {
+  background-color: rgba(0, 139, 0, 0.2);
+  color: #b3ffb3;
+  border: 1px solid rgba(0, 255, 0, 0.3);
+}
+
+/* Checkbox */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #0af89b;
+  cursor: pointer;
+}
+
+.checkbox-group label {
+  color: #9e9e9e;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+/* Forgot password */
+.forgot-password {
+  color: #87ceeb;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  color: #0af89b;
+}
+
+/* Submit button */
+.login-button {
+  width: 100%;
+  padding: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 30px;
+  border: none;
+  color: white;
+  background: linear-gradient(135deg, #5942ec, #029e99);
+  box-shadow: 0 4px 15px rgba(89, 66, 236, 0.3);
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.login-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #4a36c7, #018a85);
+  box-shadow: 0 0 20px rgba(10, 248, 155, 0.4);
+  transform: translateY(-3px);
+}
+
+.login-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Spinner */
+.spinner {
+  animation: spin 1s linear infinite;
+  height: 20px;
+  width: 20px;
+  border: 3px solid white;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Footer and Navbar z-index */
+.login-navbar, .login-footer {
+  position: relative;
+  z-index: 20;
+}
+
+/* Background pulse circles */
+.pulse-circle {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.1;
+  animation: pulse-slow 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  z-index: 0;
+}
+
+.pulse-circle1 {
+  width: 288px;
+  height: 288px;
+  top: 25%;
+  left: 25%;
+  background-color: #5942ec;
+}
+
+.pulse-circle2 {
+  width: 256px;
+  height: 256px;
+  bottom: 33%;
+  right: 33%;
+  background-color: #029e99;
+  animation-delay: 2s;
+}
+
+.pulse-circle3 {
+  width: 224px;
+  height: 224px;
+  top: 33%;
+  right: 25%;
+  background-color: #0af89b;
+  animation-delay: 4s;
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.15;
+    transform: scale(1.05);
+  }
+}

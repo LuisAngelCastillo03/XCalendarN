@@ -1,0 +1,211 @@
+.historial-container {
+  padding: 24px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+ 
+.historial-container h2 {
+  color: #1a365d;
+  margin-bottom: 28px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 10px;
+}
+ 
+.historial-container h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #3182ce, #63b3ed);
+  border-radius: 3px;
+}
+ 
+.loading-container,
+.error-container,
+.no-clases {
+  text-align: center;
+  padding: 50px 20px;
+  font-size: 18px;
+  color: #718096;
+}
+ 
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+ 
+.error-container {
+  color: #e53e3e;
+  background-color: #fff5f5;
+  border-radius: 8px;
+  padding: 30px;
+  margin: 20px 0;
+}
+ 
+.no-clases {
+  color: #4a5568;
+  background-color: #f7fafc;
+  border-radius: 8px;
+  border: 1px dashed #cbd5e0;
+}
+ 
+.clases-list {
+  display: grid;
+  gap: 20px;
+}
+ 
+.clase-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  transition: all 0.3s ease;
+  border-left: 4px solid #3182ce;
+}
+ 
+.clase-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+ 
+.clase-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ebf8ff;
+}
+ 
+.clase-fecha {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #2b6cb0;
+  font-weight: 600;
+  font-size: 16px;
+}
+ 
+.estado-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 16px;
+  font-size: 13px;
+  font-weight: 600;
+}
+ 
+.estado-agendada {
+  background-color: #ebf8ff;
+  color: #2b6cb0;
+  border: 1px solid #bee3f8;
+}
+ 
+.estado-completada {
+  background-color: #f0fff4;
+  color: #2f855a;
+  border: 1px solid #c6f6d5;
+}
+ 
+.estado-cancelada {
+  background-color: #fff5f5;
+  color: #c53030;
+  border: 1px solid #fed7d7;
+}
+ 
+.clase-body {
+  display: grid;
+  gap: 10px;
+}
+ 
+.clase-horario {
+  font-size: 16px;
+  color: #2d3748;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+ 
+.clase-profesor {
+  color: #4a5568;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+ 
+.clase-zoom {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed #e2e8f0;
+}
+ 
+.clase-zoom a {
+  color: #3182ce;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+ 
+.clase-zoom a:hover {
+  color: #2c5282;
+  text-decoration: underline;
+}
+ 
+.clase-zoom span {
+  display: block;
+  font-size: 13px;
+  color: #718096;
+  margin-top: 5px;
+  margin-left: 24px;
+}
+ 
+.icon-agendada {
+  color: #3182ce;
+}
+ 
+.icon-completada {
+  color: #38a169;
+}
+ 
+.icon-cancelada {
+  color: #e53e3e;
+}
+ 
+.icon-default {
+  color: #718096;
+}
+ 
+/* Iconos */
+.clase-horario::before,
+.clase-profesor::before,
+.clase-zoom a::before {
+  font-family: 'Material Icons';
+  font-size: 18px;
+}
+ 
+.clase-horario::before {
+  content: 'schedule';
+}
+ 
+.clase-profesor::before {
+  content: 'person';
+}
+ 
+.clase-zoom a::before {
+  content: 'videocam';
+}

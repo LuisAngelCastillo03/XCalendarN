@@ -1,0 +1,656 @@
+/* Sidebar.css - Versión Mejorada */
+
+/* Variables CSS */
+:root {
+  --turquoise: #40E0D0;
+  --dark-turquoise: #00CED1;
+  --navy-blue: #003366;
+  --dark-navy: #001a33;
+  --white: #FFFFFF;
+  --light-gray: #f5f7fa;
+  --dark-gray: #6c757d;
+  
+  --primary: var(--turquoise);
+  --primary-dark: var(--dark-turquoise);
+  --sidebar-bg: var(--navy-blue);
+  --sidebar-bg-dark: var(--dark-navy);
+  --sidebar-text: var(--white);
+  --sidebar-active: var(--turquoise);
+  --sidebar-hover: rgba(64, 224, 208, 0.15);
+  --sidebar-divider: rgba(255, 255, 255, 0.1);
+  --logout-bg: rgba(255, 255, 255, 0.1);
+  --logout-hover: rgba(255, 255, 255, 0.2);
+  --avatar-bg: var(--turquoise);
+  
+  --transition-speed: 0.3s;
+  --transition-easing: cubic-bezier(0.25, 0.72, 0.37, 1.18);
+}
+
+/* Estilos base mejorados */
+.sidebar {
+  width: 280px;
+  background: linear-gradient(160deg, var(--sidebar-bg), var(--sidebar-bg-dark));
+  color: var(--sidebar-text);
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-speed) var(--transition-easing);
+  position: fixed;
+  height: 100vh;
+  z-index: 1000;
+  overflow-y: auto;
+  font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+/* Scrollbar personalizada */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Header del Sidebar */
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px 20px;
+  border-bottom: 1px solid var(--sidebar-divider);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-circle {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #4e73df, #224abe);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.sidebar.collapsed .sidebar-title {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.collapse-toggle {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.collapse-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.collapse-toggle:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Navegación */
+.sidebar-nav {
+  flex: 1;
+  padding: 20px 0;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav li {
+  margin-bottom: 5px;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 15px;
+  position: relative;
+  transform: translateX(0);
+}
+
+.sidebar-nav a:hover {
+  background: var(--sidebar-hover);
+  color: white;
+  transform: translateX(4px);
+}
+
+.sidebar-nav a.active {
+  background: linear-gradient(90deg, rgba(78, 115, 223, 0.3), transparent);
+  color: white;
+  font-weight: 500;
+}
+
+.sidebar-nav a.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: linear-gradient(to bottom, #4e73df, #224abe);
+}
+
+.sidebar-nav i {
+  min-width: 24px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+/* Estilos para modo colapsado */
+.sidebar.collapsed .sidebar-nav a {
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.sidebar.collapsed .sidebar-nav a span {
+  display: none;
+}
+
+.sidebar.collapsed .sidebar-nav a:hover span {
+  display: block;
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--sidebar-bg);
+  padding: 8px 15px;
+  border-radius: 4px;
+  margin-left: 10px;
+  white-space: nowrap;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: tooltipFadeIn 0.2s ease-out;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+/* Footer del Sidebar */
+.sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid var(--sidebar-divider);
+}
+
+/* Perfil de usuario */
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  transition: all var(--transition-speed) ease;
+}
+
+.sidebar.collapsed .user-profile {
+  align-items: center;
+}
+
+.profile-avatar-container {
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.avatar-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4e73df, #224abe);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.avatar-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.camera-icon {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: #4e73df;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  transition: all 0.3s ease;
+  font-size: 12px;
+}
+
+.profile-avatar-container:hover .avatar-circle,
+.profile-avatar-container:hover .avatar-img {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 3px var(--primary);
+}
+
+.profile-avatar-container:hover .camera-icon {
+  transform: scale(1.1);
+  background: var(--primary-dark);
+}
+
+.profile-info {
+  text-align: center;
+  transition: all var(--transition-speed) ease;
+}
+
+.sidebar.collapsed .profile-info {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+}
+
+.profile-name {
+  display: block;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 3px;
+}
+
+.profile-email {
+  display: block;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 3px 0;
+}
+
+.profile-role {
+  display: block;
+  background: rgba(78, 115, 223, 0.3);
+  color: white;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Botón de logout */
+.logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px;
+  background: var(--logout-bg);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.logout-button:hover {
+  background: var(--logout-hover);
+  transform: translateY(-2px);
+}
+
+.logout-button:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.sidebar.collapsed .logout-button span {
+  display: none;
+}
+
+/* Modal para cambiar foto de perfil */
+.profile-pic-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6c757d;
+  font-size: 1.5rem;
+  transition: color 0.2s;
+}
+
+.close-modal:hover {
+  color: #333;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #343a40;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.preview-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  margin: 25px 0;
+}
+
+@media (min-width: 576px) {
+  .preview-container {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.current-pic, .new-pic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.current-pic h4, .new-pic h4 {
+  margin-bottom: 10px;
+  color: #495057;
+  font-size: 1rem;
+}
+
+.avatar-preview {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--primary);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.file-input-label {
+  margin-top: 15px;
+  padding: 8px 15px;
+  background: var(--primary);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: inline-block;
+  font-size: 0.9rem;
+}
+
+.file-input-label:hover {
+  background: var(--primary-dark);
+}
+
+.file-input {
+  display: none;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.modal-actions button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.cancel-btn {
+  background: #e9ecef;
+  color: #495057;
+}
+
+.cancel-btn:hover {
+  background: #dee2e6;
+}
+
+.confirm-btn {
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+}
+
+.confirm-btn:hover {
+  background: var(--primary-dark);
+}
+
+.confirm-btn:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+/* Estilos para móviles */
+.mobile-sidebar {
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.mobile-sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  animation: overlayFadeIn 0.3s ease-out;
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.sidebar-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: var(--primary);
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  color: white;
+  z-index: 100;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  display: none;
+}
+
+.sidebar-toggle.open {
+  left: 280px;
+  transform: rotate(180deg);
+}
+
+/* Botón fijo para colapsar/expandir */
+.fixed-toggle {
+  position: absolute;
+  top: 16px;
+  right: -14px;
+  background: var(--sidebar-bg);
+  border: 2px solid white;
+  border-radius: 50%;
+  padding: 4px;
+  z-index: 2000;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.fixed-toggle:hover {
+  background: var(--sidebar-bg-dark);
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar:not(.mobile-sidebar) {
+    display: none;
+  }
+  
+  .sidebar.collapsed {
+    width: 280px;
+  }
+  
+  .sidebar-toggle {
+    display: block;
+  }
+  
+  .collapse-toggle {
+    display: none !important;
+  }
+  
+  .fixed-toggle {
+    display: none;
+  }
+  
+  /* Ajustes para modo colapsado en móviles */
+  .sidebar.collapsed .profile-avatar-container {
+    margin: 0 auto 10px;
+  }
+  
+  .sidebar.collapsed .avatar-circle,
+  .sidebar.collapsed .avatar-img {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+  
+  .sidebar.collapsed .camera-icon {
+    width: 18px;
+    height: 18px;
+    bottom: 0;
+    right: 0;
+    font-size: 10px;
+  }
+  
+  .sidebar.collapsed .logout-button {
+    justify-content: center;
+    padding: 10px;
+  }
+  
+  .sidebar.collapsed .logout-button > svg {
+    margin: 0;
+  }
+}
+
+/* Reducción de movimiento para accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

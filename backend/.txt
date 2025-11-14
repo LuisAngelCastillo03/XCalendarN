@@ -1,0 +1,11 @@
+--- Alumnos ---
+Matricula: A123456
+Contraseña: Test1234
+
+--- Profesores ---
+Usuario: profe_test
+Contraseña: Test1234
+
+--- Administrador ---
+Usuario: admin_test
+Contraseña: Test1234

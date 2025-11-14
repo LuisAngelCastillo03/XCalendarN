@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #029e99;   /* Verde azulado */
+  --color-secondary: #1C2841; /* Azul oscuro */
+  --color-accent: #87CEEB;    /* Azul cielo */
+  --color-light: #fbfaf7;     /* Blanco hueso */
+  --color-dark: #161616;      /* Gris oscuro */
+}
+
+body {
+  @apply bg-gray-50 overflow-x-hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* ==== NAVBAR ==== */
+.navbar-container {
+  @apply fixed top-0 left-0 w-full z-50 px-6 py-3 shadow-md flex justify-between items-center;
+  background-color: var(--color-dark);
+  color: var(--color-light);
+}
+
+.navbar-link {
+  @apply flex items-center gap-2 px-3 py-2 rounded transition-all duration-200;
+  color: var(--color-light);
+}
+
+.navbar-link:hover {
+  color: var(--color-accent);
+}
+
+.navbar-link-active {
+  color: var(--color-accent);
+  font-weight: bold;
+  background-color: var(--color-secondary);
+}
+
+.navbar-button {
+  @apply flex items-center gap-2 font-semibold px-4 py-2 rounded-full transition;
+  background-color: var(--color-primary);
+  color: var(--color-light);
+}
+
+.navbar-button:hover {
+  background-color: var(--color-secondary);
+}
+
+.navbar-logo {
+  @apply h-10 w-auto rounded-full border;
+  border-color: var(--color-primary);
+}
+
+/* Para espacios y contenido principal */
+.main-content {
+  margin-top: 80px; /* Altura del navbar */
+  padding: 1rem;
+}
+:root {
+  --color-primary: #029e99;   /* Verde azulado */
+  --color-secondary: #1C2841; /* Azul oscuro */
+  --color-accent: #87CEEB;    /* Azul cielo */
+  --color-light: #fbfaf7;     /* Blanco hueso */
+  --color-dark: #161616;      /* Gris oscuro */
+}

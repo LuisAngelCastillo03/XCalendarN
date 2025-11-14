@@ -1,0 +1,591 @@
+/* teacher-schedule.css - Estilos para Gestión de Horarios de Profesores */
+
+.teacher-schedule-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+.teacher-schedule-container h2 {
+  color: #2d3748;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #3b75a8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #e2e8f0;
+}
+
+/* Estados de carga y error */
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-size: 1.1rem;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+.loading-indicator::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 3px solid #e2e8f0;
+  border-left: 3px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 12px;
+}
+
+.error-alert {
+  background: linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%);
+  border: 1px solid #fc8181;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(254, 178, 178, 0.3);
+}
+
+.error-alert p {
+  margin: 0 0 16px 0;
+  color: #c53030;
+  font-weight: 500;
+}
+
+.error-alert button {
+  background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.error-alert button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.4);
+}
+
+/* Selector de profesor */
+.teacher-selector {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.teacher-selector label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #2d3748;
+  font-size: 1.1rem;
+}
+
+.teacher-selector select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  background: white;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+}
+
+.teacher-selector select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Información del profesor */
+.teacher-info {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  text-align: center;
+}
+
+.teacher-info h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.teacher-info p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 1rem;
+}
+
+/* Controles de horario */
+.schedule-controls {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.working-days, .working-hours {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.working-days label, .working-hours label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #2d3748;
+  font-size: 1.1rem;
+}
+
+.days-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.day-checkbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 8px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.day-checkbox:hover {
+  border-color: #3b82f6;
+  transform: translateY(-2px);
+}
+
+.day-checkbox input {
+  display: none;
+}
+
+.day-checkbox span {
+  font-weight: 600;
+  color: #4a5568;
+  transition: all 0.3s ease;
+}
+
+.day-checkbox input:checked + span {
+  color: #3b82f6;
+}
+
+.day-checkbox input:checked ~ .day-checkbox {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+}
+
+.day-checkbox input:checked + span {
+  color: #3b82f6;
+  font-weight: 700;
+}
+
+.day-checkbox::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.day-checkbox input:checked::before {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px;
+}
+
+.time-inputs {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.time-inputs input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.time-inputs input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.time-inputs span {
+  font-weight: 600;
+  color: #4a5568;
+}
+
+/* Calendario - Estilos para inputs de fecha */
+.filter-group input[type="date"] {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  background: white;
+}
+
+.filter-group input[type="date"]:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  transform: translateY(-2px);
+}
+
+.form-group input[type="date"] {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  background: white;
+}
+
+.form-group input[type="date"]:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  transform: translateY(-2px);
+}
+
+.form-group input[type="date"]:disabled {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  cursor: not-allowed;
+  border-color: #e2e8f0;
+}
+
+/* Estilos para inputs de fecha en formularios del modal */
+.modal-content .form-group input[type="date"] {
+  background-color: white;
+}
+
+/* Contenedor del calendario */
+.calendar-container {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  border: 1px solid #e2e8f0;
+}
+
+/* Personalización de FullCalendar */
+.fc {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.fc-header-toolbar {
+  padding: 16px 0 !important;
+  margin-bottom: 16px !important;
+  border-bottom: 2px solid #f1f3f4;
+}
+
+.fc-toolbar-title {
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
+  color: #2d3748 !important;
+}
+
+.fc-button {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+  border: none !important;
+  color: white !important;
+  border-radius: 8px !important;
+  padding: 10px 16px !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3) !important;
+}
+
+.fc-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4) !important;
+}
+
+.fc-button-primary:not(:disabled).fc-button-active {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%) !important;
+}
+
+.fc-daygrid-day-number, .fc-col-header-cell-cushion {
+  color: #374151 !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+}
+
+.fc-timegrid-slot {
+  height: 45px !important;
+}
+
+.fc-event {
+  border: none !important;
+  padding: 6px 8px !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+}
+
+.fc-event:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+}
+
+.fc-day-today {
+  background-color: rgba(59, 130, 246, 0.08) !important;
+}
+
+.fc-day-today .fc-daygrid-day-number {
+  color: #3b82f6 !important;
+  font-weight: 700 !important;
+}
+
+/* Sección de guardado */
+.save-section {
+  text-align: center;
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+}
+
+.btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid transparent;
+  border-left: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.error-message {
+  color: #dc2626;
+  margin-top: 12px;
+  font-weight: 500;
+  padding: 10px;
+  background: #fef2f2;
+  border-radius: 8px;
+  border: 1px solid #fecaca;
+}
+
+/* Estado sin profesores */
+.no-teachers {
+  text-align: center;
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.no-teachers p {
+  margin: 0 0 20px 0;
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+.no-teachers button {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.no-teachers button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+/* Leyenda del calendario */
+.calendar-legend {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #4a5568;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.legend-color.generated {
+  background: #10b981;
+}
+
+.legend-color.custom {
+  background: #3b82f6;
+}
+
+/* Animaciones */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .teacher-schedule-container {
+    padding: 20px;
+  }
+  
+  .schedule-controls {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .days-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .teacher-schedule-container {
+    padding: 16px;
+  }
+  
+  .teacher-schedule-container h2 {
+    font-size: 1.8rem;
+  }
+  
+  .days-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .time-inputs {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .fc-toolbar {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .fc-toolbar-chunk {
+    text-align: center;
+  }
+  
+  .fc-toolbar-title {
+    font-size: 1.2rem !important;
+  }
+  
+  /* Responsive para calendario */
+  .filter-group input[type="date"],
+  .form-group input[type="date"] {
+    padding: 12px 16px;
+    font-size: 16px; /* Mejor para móviles */
+  }
+}
+
+@media (max-width: 480px) {
+  .teacher-info {
+    padding: 20px;
+  }
+  
+  .teacher-info h3 {
+    font-size: 1.3rem;
+  }
+  
+  .working-days, .working-hours, .calendar-container, .save-section {
+    padding: 20px;
+  }
+  
+  .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+}

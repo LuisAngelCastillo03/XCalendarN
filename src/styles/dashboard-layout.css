@@ -1,0 +1,61 @@
+/* Contenedor principal con flex */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #2c3e50;
+  color: white;
+  transition: width 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #1a252f;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav li {
+  padding: 1rem;
+}
+
+.sidebar-nav li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+/* Contenido principal centrado */
+.main-content {
+  flex: 1; /* ocupa todo el espacio disponible */
+  display: flex;
+  justify-content: center; /* centra horizontalmente */
+  align-items: flex-start; /* opcional: alinea arriba */
+  padding: 2rem;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+/* Wrapper interno para limitar ancho del contenido */
+.main-content > * {
+  max-width: 1200px; /* ancho máximo deseado */
+  width: 100%;
+}

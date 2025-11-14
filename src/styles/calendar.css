@@ -1,0 +1,281 @@
+/* ======= CONTENEDOR PRINCIPAL ======= */
+
+
+/* calendar.css */
+.fc {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.fc-header-toolbar {
+  padding: 1.5rem !important;
+  background: #f8fafc !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  margin-bottom: 0 !important;
+}
+
+.fc-toolbar-title {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  color: #2d3748 !important;
+}
+
+.fc-button {
+  background: white !important;
+  border: 2px solid #e2e8f0 !important;
+  color: #4a5568 !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+}
+
+.fc-button:hover {
+  background: #f7fafc !important;
+  border-color: #667eea !important;
+  transform: translateY(-1px);
+}
+
+.fc-button-primary:not(:disabled).fc-button-active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border-color: transparent !important;
+  color: white !important;
+}
+
+.fc-day-today {
+  background-color: #f0fff4 !important;
+}
+
+.fc-timegrid-slot {
+  height: 50px !important;
+  border-bottom: 1px solid #f1f3f4 !important;
+}
+
+.fc-event {
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 6px 8px !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.fc-event-time {
+  font-weight: 600 !important;
+  margin-right: 4px !important;
+}
+
+.fc-col-header-cell {
+  background: #f8fafc !important;
+  border-right: 1px solid #e2e8f0 !important;
+}
+
+.fc-col-header-cell-cushion {
+  color: #2d3748 !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  padding: 12px 8px !important;
+}
+
+.fc-timegrid-axis {
+  background: #f8fafc !important;
+  border-right: 1px solid #e2e8f0 !important;
+}
+
+.fc-timegrid-slot-label {
+  font-size: 0.8rem !important;
+  color: #718096 !important;
+  font-weight: 500 !important;
+}
+
+.fc-timegrid-now-indicator-line {
+  border-color: #e53e3e !important;
+  border-width: 2px !important;
+}
+
+/* Scrollbar styling for timegrid */
+.fc-timegrid-body {
+  overflow-y: auto;
+  max-height: 500px;
+}
+
+.fc-timegrid-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.fc-timegrid-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.fc-timegrid-body::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.fc-timegrid-body::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fc-header-toolbar {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem !important;
+  }
+  
+  .fc-toolbar-chunk {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .fc-button {
+    font-size: 0.8rem !important;
+    padding: 6px 12px !important;
+  }
+}
+.calendar-container {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  height: calc(100vh - 150px);
+  min-height: 600px;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.calendar-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* ======= FULLCALENDAR GLOBAL ======= */
+.fc {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100% !important;
+}
+
+.fc .fc-toolbar {
+  margin-bottom: 0.5em;
+}
+
+.fc-toolbar-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.fc-button {
+  background-color: #3498db !important;
+  border: none !important;
+  color: white !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  padding: 6px 14px !important;
+  text-transform: capitalize !important;
+  transition: 0.2s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.fc-button:hover {
+  background-color: #2980b9 !important;
+}
+
+.fc-button-active,
+.fc-button:focus {
+  background-color: #1a5276 !important;
+  outline: none !important;
+}
+
+.fc-view-harness {
+  flex-grow: 1;
+  min-height: 500px;
+  height: 100% !important;
+}
+
+.fc-view-harness-active {
+  height: 100% !important;
+}
+
+.fc-scroller {
+  overflow-y: hidden !important;
+}
+
+.fc-daygrid-body,
+.fc-timegrid-body {
+  height: 100% !important;
+}
+
+/* ======= EVENTOS ======= */
+.fc-daygrid-event {
+  padding: 6px 8px !important;
+  font-size: 13px !important;
+  font-weight: 500;
+  background-color: #3498db !important;
+  color: #ffffff !important;
+  border-radius: 6px !important;
+  border: none !important;
+  transition: transform 0.2s ease;
+}
+
+.fc-daygrid-event:hover {
+  transform: scale(1.02);
+  background-color: #2980b9 !important;
+}
+
+.fc-event-time {
+  font-weight: bold;
+}
+
+.fc-event-title {
+  margin-left: 4px;
+}
+
+/* ======= RESPONSIVE ======= */
+@media screen and (max-width: 768px) {
+  .calendar-container {
+    padding: 16px 12px;
+    height: calc(100vh - 120px);
+  }
+  
+  .calendar-title {
+    font-size: 1.5rem;
+  }
+  
+  .fc-toolbar {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .fc-toolbar-chunk {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .fc-toolbar-title {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+  }
+  
+  .fc-button {
+    font-size: 12px !important;
+    padding: 4px 10px !important;
+  }
+  
+  .fc-daygrid-event {
+    font-size: 12px !important;
+  }
+}
