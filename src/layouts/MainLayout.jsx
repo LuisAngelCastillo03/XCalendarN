@@ -1,23 +1,9 @@
-import React from 'react'
+import { Outlet } from 'react-router-dom';
 
-const MainLayout = ({ children }) => {
-  return (
-    <div className="main-layout">
-      <header>
-        {/* Header content */}
-        <nav>Navegación</nav>
-      </header>
-      
-      <main>
-        {children}
-      </main>
-      
-      <footer>
-        {/* Footer content */}
-        <p>Footer</p>
-      </footer>
-    </div>
-  )
-}
+const MainLayout = () => (
+  <main>
+    <Outlet />
+  </main>
+);
 
-export default MainLayout
+export default MainLayout;
